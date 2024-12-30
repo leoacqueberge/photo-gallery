@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leothusiast gallery</title>
+    <link rel="icon" href="favicon.png" type="png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background-color: #f5f5f5;
+            padding: 15px;
+            margin: 0;
+        }
+
+        .gallery {
+            columns: 4;
+            column-gap: 15px;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .gallery img {
+            width: 100%;
+            display: block;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            break-inside: avoid;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .gallery img.loaded {
+            opacity: 1;
+        }
+
+        @media screen and (min-width: 500px) {
+            .gallery { columns: 5; }
+        }
+        @media screen and (max-width: 480px) {
+            .gallery { columns: 2; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery"></div>
+
+    <script>
+        const images = [
+            '230721-LQB-R1-03.jpeg',
+            '230721-LQB-R1-04.jpeg',
+            '230721-LQB-R1-11.jpeg',
+            '230721-LQB-R1-12.jpeg',
+            '230721-LQB-R1-30.jpeg',
+            '230721-LQB-R1-34.jpeg',
+            '240304-LQB-773972-04.jpeg',
+            '240304-LQB-773972-06.jpeg',
+            '240606-LQB-777625-09.jpeg',
+            '240606-LQB-777625-16.jpeg',
+            '240606-LQB-777625-30.jpeg',
+            '240606-LQB-777625-31.jpeg',
+            '240606-LQB-777625-36.jpeg',
+            '240606-LQB-777626_2_5-18.jpeg',
+            '240606-LQB-777626_2_5-21.jpeg',
+            '240606-LQB-777626_2_5-22.jpeg',
+            '240606-LQB-777626_2_5-23.jpeg',
+            '240606-LQB-777626_2_5-24.jpeg',
+            '240606-LQB-777626_2_5-25.jpeg',
+            '240606-LQB-777626_2_5-26.jpeg',
+            '240912-LQB-1682-04.jpeg',
+            '240912-LQB-1682-11.jpeg',
+            '240912-LQB-1682-13.jpeg',
+            '240912-LQB-1682-23.jpeg',
+            '240912-LQB-1682-25.jpeg',
+            '240912-LQB-1682-31.jpeg',
+            '240912-LQB-1682-36.jpeg'            
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = document.querySelector('.gallery');
+            const shuffledImages = images.sort(() => Math.random() - 0.5);
+
+            shuffledImages.forEach((imageName) => {
+                const img = document.createElement('img');
+                img.alt = "Photo galerie";
+                img.src = `photos/${imageName}`;
+                img.loading = "lazy";
+                img.onload = () => {git
+                    img.classList.add('loaded');
+                };
+                gallery.appendChild(img);
+            });
+        });
+    </script>
+</body>
+</html>
